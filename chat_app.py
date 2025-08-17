@@ -1,7 +1,6 @@
-from src.graphs.builder import build_graph
+from src.graphs.builder import build_tool_chat_graph
 
-def main():
-    graph = build_graph()
+def main(graph):
     while True:
         user_input = input("User: ")
         if user_input.lower() in ["quit", "exit", "q"]:
@@ -12,4 +11,5 @@ def main():
                 print("Assistant", value["messages"][-1].content)
 
 if __name__ == "__main__":
-    main()
+    graph = build_tool_chat_graph()
+    main(graph)

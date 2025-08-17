@@ -1,7 +1,7 @@
 from langchain_openai import ChatOpenAI
 
 def create_openai_llm(
-        model: str = "deepseek-r1",
+        model: str = "qwen3:8b",
         api_key: str = "ollama",
         base_url: str = "http://localhost:11434/v1",
         temperature: float = 0.1,
