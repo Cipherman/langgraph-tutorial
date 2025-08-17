@@ -2,7 +2,7 @@ from typing import Literal
 from langgraph.types import Command
 from langgraph.prebuilt import ToolNode
 
-from src.agents.agents import chat_agent, tool_chat_agent
+from src.agents.agents import chat_agent, tool_chat_agent, react_agent
 from src.tools import tavily_tool
 from .types import State
 
@@ -29,3 +29,11 @@ def tool_chat_node(state: State) -> Command[Literal["tool_node", "__end__"]]:
            )
 
 tool_node = ToolNode([tavily_tool])
+
+def react_node(state: State) -> Command[Literal["__end__"]]:
+    response = react_agent.invoke(state["messages"])
+
+    return Command(
+        update= {"messages": [response]},
+        goto="__end__",
+    )
